@@ -1,0 +1,19 @@
+validasi null di token:tidak bisa print apabila ada token yang null dan akan menampilkan siapa aja yang null dan akan di tampilkan 
+
+menghitung golput: jumlah total user berdasarkan level siswa -                   total vote count = hasil golput --sudah
+
+pembuatan waktu ketika selesai pemilihan:membuat create dan store waktu,ketika waktu sama dengan carbon maka menampilkan chart apabila tidak sama maka tidak menampilkan chart
+jadi nanti if waktu tidak sama maka tidak akan menampilkan chart --sudah
+
+get hasil vote = select id paslon -> where id paslon berdasarkan no -> di count dan akan digunakan untuk chart --sudah
+
+ambil data waktu =  mengambil berdasarkan tanggal apabila tanggal sama tampilkan halaman chart apabila tanggal tidak sesuai dan tanggl = null maka tidak akan menampilkan --sudah
+
+pembuatan token:setelah import maka di db ada field user dengan token random
+validasi token:mencari berdasarkan token dengan where apabila ada maka bisa memilih apabila tidak ada maka tidak bisa milih dan akan memberikan eror where dari user bukan dari tabel token --sudah
+
+pembuatan import excel:import menggunakan laravel excel dan kemudian di tampilkan tabel user dengan crud(anstisipasi apabila ada data gagal di import)  --sudah
+
+pembuatan barcode dengan cara pake simple qr code dengan print di table user  
+--sudah
+validasi home: apabila count = 1 maka dia bisa milih apabila count kurang dari 1/0 maka dia tidak bisa milih --sudah
