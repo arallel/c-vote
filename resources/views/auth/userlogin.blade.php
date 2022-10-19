@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
         name="viewport">
-    <title>Login &mdash; Stisla</title>
+    <title>Login &mdash; C-VOTE</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet"
@@ -25,6 +25,8 @@
         href="{{ asset('css/style.css') }}">
     <link rel="stylesheet"
         href="{{ asset('css/components.css') }}">
+            <link rel="icon" type="image/png" href="{{ asset('img/smk.jpg') }}">
+
 
 </head>
 
@@ -39,7 +41,7 @@
                             alt="logo"
                             width="80"
                             class="shadow-light rounded-circle mb-5 mt-2">
-                        <h4 class="text-dark font-weight-normal">Selamat Datang di<span class="font-weight-bold">   SILOTE</span>
+                        <h4 class="text-dark font-weight-normal">Selamat Datang di<span class="font-weight-bold">   C-Vote</span>
                         </h4>
                         <p class="text-muted">Aplikasi voting ketos waktos baru</p>
                        @php
@@ -66,9 +68,10 @@
                                     type="text"
                                     class="form-control"
                                     name="token"
+                                    AUTOCOMPLETE="OFF"
                                     tabindex="1"
                                     required
-                                    autofocus>
+                                    autofocus maxlength="6">
                                 <div class="invalid-feedback">
                                     Please fill in your email
                                 </div>
@@ -96,7 +99,7 @@
                         
 
                         <div class="text-small mt-5 text-center">
-                            Made with 💛 by Vito and Rafly
+                            Made with 💛 by XII RPL Vito and Rafly
                             
                         </div>
                     </div>

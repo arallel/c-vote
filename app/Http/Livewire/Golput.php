@@ -16,9 +16,8 @@ class Golput extends Component
     public function mount()
     {
 
-        $user = DB::table('users')->where('token','=', null)->whereNot(function ($query) {
-                    $query->where('name', 'admin');
-                })->count();
+        $user = DB::table('token_siswa')->get()->count();
+                // dd($user);
         $vote = vote::count('vote_count');
         $data = $user - $vote;
         $this->data = json_encode($data);

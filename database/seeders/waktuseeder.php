@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\waktupilih;
+use Carbon\Carbon;
 
 class waktuseeder extends Seeder
 {
@@ -15,9 +16,10 @@ class waktuseeder extends Seeder
      */
     public function run()
     { 
+        $date =  Carbon::now()->format('Y-m-d');
         $waktu = waktupilih::create([
-         'tanggal_pemilu' => '2022-10-17',
-         'tanggal_selesai_pemilu' => '2022-10-17',
+         'tanggal_pemilu' => $date,      
+         'tanggal_selesai_pemilu' => $date
          ]);
     }
 }

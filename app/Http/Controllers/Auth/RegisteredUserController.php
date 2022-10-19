@@ -36,13 +36,13 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'nis' => ['required', 'string', 'max:255'],
+            'kelas' => ['required', 'string', 'max:255'],
             'password' => ['required', 'confirmed', 'min:4'],
         ]);
           
         $user = User::create([
             'name' => $request->name,
-            'nis' => $request->nis,
+            'kelas' => $request->kelas,
             'level' => $request->level,
             'token' => $token,
             'password' => Hash::make($request->password),

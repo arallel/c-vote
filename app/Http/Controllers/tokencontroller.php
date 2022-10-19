@@ -21,68 +21,23 @@ class tokencontroller extends Controller
             'token' => ['required'],
                
         ]);
-        $token =  User::where('token', $credentials)->select('token','id')->get();
+        $token =  tokenuser::where('token',$credentials)->first();
         // dd($token);
-        $datacount = DB::table('users')
+        $datacount = DB::table('token_siswa')
                 ->select('token')
                 ->where('token', '=', $credentials)
                 ->limit(1)
                 ->count();
-        if ($datacount == 1) 
+                // foreach($token as $t){}
+        if ($datacount == 1 && $token->status == 0) 
           {
-            foreach ($token as $d) {
-                    $datac = session(['id_token' => $d->id,'token' => $d->token]);
-        } 
+              $datac = session(['id_token' => $token->token_id,'token' => $token->token]);
              return redirect()->route('user.home');
            }else{
-            Alert::error('Error Token', 'Token Salah Apabila mengalami Kesalahan Terus Hubungi Panitia');
+            // Alert::error('Error Token', 'Token Salah Apabila mengalami Kesalahan Terus Hubungi Panitia');
            return view('auth.userlogin');
            }
        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        
-    }
 }

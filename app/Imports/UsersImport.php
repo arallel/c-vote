@@ -2,26 +2,27 @@
 
 namespace App\Imports;
 
-use App\Models\User;
+use App\Models\tokenuser;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Support\Facades\Hash;
 
-class UsersImport implements ToModel,WithHeadingRow
+
+class UsersImport implements ToModel, WithHeadingRow
 {
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
     public function model(array $row)
     {
-         return new User([
-            'name'  => $row['name'],
+        return new tokenuser([
+            'nama'  => $row['nama'],
+            'kelas'  => $row['kelas'],
             'nis'  => $row['nis'],
-            'level'  => $row['level'],
             'token'  => Str::random(6),
-            'password'  => $row['password'],
         ]);
     }
 }

@@ -1,10 +1,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Silote</a>
+            <a href="index.html">V-VOTE</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">SL</a>
+            <a href="index.html">VV</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
@@ -21,6 +21,10 @@
             <li class="{{ Request::is('waktu') ? 'active' : '' }}{{ Request::is('waktu/create') ? 'active' : '' }}">
                 <a class="nav-link"
                     href="{{ route('waktu.index') }}"><i class="fas fa-solid fa-envelope"></i><span>Waktu Pemilihan</span></a>
+            </li>
+            <li class="{{ Request::is('kelas') ? 'active' : '' }}{{ Request::is('kelas/create') ? 'active' : '' }}">
+                <a class="nav-link"
+                    href="{{ route('kelas.index') }}"><i class="fas fa-solid fa-envelope"></i><span>Kelas</span></a>
             </li>
             <li class="{{ Request::is('User') ? 'active' : '' }}{{ Request::is('User/create') ? 'active' : '' }}">
                 <a class="nav-link"

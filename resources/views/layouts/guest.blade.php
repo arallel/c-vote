@@ -35,8 +35,9 @@
     <style>
         .jumbotron {
             background-image: url(img/triangles.png);
-            background-size: cover;
-            height: 300px;
+            
+            height: 200px;
+            width: 100%;
         }
     </style>
 </head>
@@ -61,6 +62,7 @@
         </div>
     </section>
 </div>
+
 
 <!-- General JS Scripts -->
 <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>

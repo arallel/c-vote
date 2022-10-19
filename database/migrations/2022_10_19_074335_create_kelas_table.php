@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::create('kelas', function (Blueprint $table) {
+            $table->id('kelas_id');
             $table->string('kelas');
-            $table->string('token')->nullable();
-            $table->integer('status')->default('0');
-            $table->enum('level', ['admin', 'siswa'])->default('admin');
-            $table->string('password');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('kelas');
     }
 };

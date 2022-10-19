@@ -26,9 +26,8 @@
                 
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
-                <button
-                    class="dropdown-item has-icon text-danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
+                <button  class="dropdown-item has-icon text-danger">
+                    Logout 
                 </button>
                 </form>
             </div>

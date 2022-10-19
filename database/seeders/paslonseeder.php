@@ -15,23 +15,23 @@ class paslonseeder extends Seeder
      */
     public function run()
     {
-         $paslon1 = DB::table('paslons')->insert([
-         'paslon_id' => '1',
-        'foto_calon' => 'fotocalon/wpIAt2qNNFHko5lXftctizQUlcDO1fRdgSP4NjuU.jpg',
-        'calon_ketua' => 'Devi Dwi Harfian',
-        'calon_wakil' => 'Irnanda Bagus Prasetyo',
-        ]);
-         $paslon2 = DB::table('paslons')->insert([
-         'paslon_id' => '2',
-        'foto_calon' => 'fotocalon/1k3cWRQ0gaG4vxeTBCHH97pcbAzvIeAZMTwcUTJ7.jpg',
-        'calon_ketua' => 'Riska Nur Fatimah',
-        'calon_wakil' => 'M.Ulric Nakhlah Adikara',
-        ]);
-          $paslon3 = DB::table('paslons')->insert([
-         'paslon_id' => '3',
-        'foto_calon' => 'fotocalon/7PqBWT7S7ttqF7raSchNoz95F3fgRCqrzrixbgBn.jpg',
-        'calon_ketua' => 'Nyndy Erni Sri Yuliastin',
-        'calon_wakil' => 'Nafisah Layla Farah Caren',
-        ]);
+        $paslon1 = DB::table('paslons')->insert([
+            'paslon_id' => '1',
+           'foto_calon' => 'fotocalon/sxwPsHSTTK6Ual19eAZkKkPIkydm8kI113sOIaaJ.jpg',
+           'calon_ketua' => 'Devi Dwi Harfian',
+           'calon_wakil' => 'Irnanda Bagus Prasetyo',
+           ]);
+            $paslon2 = DB::table('paslons')->insert([
+            'paslon_id' => '2',
+           'foto_calon' => 'fotocalon/8ZYE74lOy9Ukv6R4nYjQkZtiKwCa3P3zXEbrpxh7.jpg',
+           'calon_ketua' => 'Riska Nur Fatimah',
+           'calon_wakil' => 'M.Ulric Nakhlah Adikara',
+           ]);
+             $paslon3 = DB::table('paslons')->insert([
+            'paslon_id' => '3',
+           'foto_calon' => 'fotocalon/b2ERxOPv4DWoD0V5uAFvPYXVANwiUVFlrXTEPuWb.jpg',
+           'calon_ketua' => 'Nyndy Erni Sri Yuliastin',
+           'calon_wakil' => 'Nafisah Layla Farah Caren',
+           ]);
     }
 }

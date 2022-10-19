@@ -25,6 +25,8 @@
         href="{{ asset('css/style.css') }}">
     <link rel="stylesheet"
         href="{{ asset('css/components.css') }}">
+            <link rel="icon" type="image/png" href="{{ asset('img/smk.jpg') }}">
+
 </head>
 
 <body>
@@ -37,7 +39,7 @@
                             alt="logo"
                             width="80"
                             class="shadow-light rounded-circle mb-5 mt-2">
-                        <h4 class="text-dark font-weight-normal">Selamat Datang di<span class="font-weight-bold">   SILOTE</span>
+                        <h4 class="text-dark font-weight-normal">Selamat Datang di<span class="font-weight-bold">   C-Vote</span>
                         </h4>
                         <p class="text-muted">Aplikasi voting ketos waktos baru</p>
                             <form method="POST"
@@ -88,7 +90,7 @@
                         </form>
 
                         <div class="text-small mt-5 text-center">
-                            Copyright &copy; Your Company. Made with 💛 by Vito and Rafly
+                            Made with 💛 by XII RPL Vito and Rafly
                             
                         </div>
                     </div>

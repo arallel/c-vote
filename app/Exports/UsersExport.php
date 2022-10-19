@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\User;
+use App\Models\tokenuser;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -13,34 +13,32 @@ use Maatwebsite\Excel\Concerns\WithColumnWidths;
 class UsersExport implements FromCollection, WithMapping, WithHeadings, WithStyles, WithColumnWidths
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
-        return User::all();
+        return tokenuser::all();
     }
     public function headings(): array
     {
         return [
-            'Name',
-            'Nis',
-            'Level',
-            'Token',
-            'password'
+            'Nama',
+            'Kelas',
+            'nis',
+
         ];
     }
-     public function startCell(): string
+    public function startCell(): string
     {
         return 'A1';
     }
     public function map($user): array
     {
         return [
-            $user->name,
+            $user->nama,
+            $user->kelas,
             $user->nis,
-            $user->level,
-            $user->token,
-            $user->password,
+
         ];
     }
     public function styles(Worksheet $sheet)
@@ -49,10 +47,10 @@ class UsersExport implements FromCollection, WithMapping, WithHeadings, WithStyl
             1    => ['font' => ['bold' => true]],
         ];
     }
-     public function columnWidths(): array
+    public function columnWidths(): array
     {
         return [
-            'E' => 63,         
+            'E' => 63,
         ];
     }
 }

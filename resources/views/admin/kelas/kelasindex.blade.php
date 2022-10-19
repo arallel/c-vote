@@ -20,12 +20,12 @@
                 <div class="card">
                     <div class="row">
                     <div class="col-lg-7 ml-3 mt-3">
-                    <a href="{{ route('User.create') }}" class="btn btn-primary">create</a>
-                    <a href="{{ route('User.export') }}" class="btn btn-info ">export Excel</a>
+                    <a href="{{ route('kelas.create') }}" class="btn btn-primary">create</a>
+                    {{-- <a href="{{ route('User.export') }}" class="btn btn-info ">export Excel</a>
                     <button class="btn btn-danger "
                                     data-toggle="modal"
                                     data-target="#exampleModal">Import Excel</button>
-                    <a href="{{ route('User.printall') }}" class="btn btn-info ">Print Semua</a>
+                    <a href="{{ route('User.printall') }}" class="btn btn-info ">Print Semua</a> --}}
                     </div>
                     </div>
                     <div class="card-body">
@@ -34,45 +34,24 @@
                                         id="table-1">
                                         <thead>
                                             <tr>
-                                                <th>
-                                                    No
-                                                </th>
-                                                <th>Nama</th>
+                                                <th>No</th>
                                                 <th>kelas</th>
-                                                <th>Level</th>
-                                                <th>Token</th>
-                                                <th>Barcode</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($users as $user)
+                                             @foreach($kelass as $kelas)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $user->nama }}</td>
-                                                <td>{{ $user->kelas }}</td>
-                                                <td>@if($user->status == 0)
-                                                    <span class="badge badge-success">aktif</span>
-                                                    @elseif($user->status == 1)
-                                                    <span class="badge badge-secondary">tidak aktif</span>
-                                                    @endif
-                                                </td>
-                                                <td>{{ $user->token }}</td>
+                                                <td>{{ $kelas->kelas }}</td>
                                                 <td>
-                                                    @if($user->token == !null)
-                                                    {!! DNS1D::getBarcodeSVG($user->token, 'C128',1,50,true) !!}
-                                                    @endif
-                                               </td>
-                                                <td>
-                                                    {{-- @dd($user) --}}
-                                                    <form action="{{ route('User.delete',$user->token_id) }}" method="post">
+                                                    <form action="{{ route('kelas.destroy',$kelas->kelas_id) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                <a href="{{ route('User.edit',$user->token_id) }}"class="btn btn-warning">edit</a>
+                                                <a href="{{ route('kelas.edit',$kelas->kelas_id) }}"class="btn btn-warning">edit</a>
                                                 <button class="btn btn-danger">hapus</button>
-                                                <a href="{{ route('User.print',$user->token_id) }}"class="btn btn-info">Print</a>
                                                 </form>
-                                        </td>
+                                                  </td>
                                             </tr>
                                             @endforeach
                                         </tbody>

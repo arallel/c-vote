@@ -13,10 +13,10 @@
                 <h1>Pasangan calon ketua osis</h1>
             </div>
             <div class="section-body">
-            <div class="col-12 col-md-6 col-lg-6">
+            <div class="col-12 col-md-5 col-lg-5  mx-auto">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Input Pasangan Calon ketua osis</h4>
+                                <h4 class="text-primary">Input Pasangan Calon ketua osis</h4>
                             </div>
                             <div class="card-body">
                                 <form action="{{ route('paslon.store') }}" method="post" enctype="multipart/form-data">

@@ -19,26 +19,20 @@ class userseeder extends Seeder
      */
     public function run()
     {
-         $faker = Faker::create('id_ID');
+        $faker = Faker::create('id_ID');
         $user = User::create([
             'name' => 'admin',
-            'nis' => '12',
+            'kelas' => '12',
             'level' => 'admin',
             'password' => Hash::make('1234'),
         ]);
-        $user = User::create([
-            'name' => 'vito',
-            'nis' => '122',
-            'level' => 'siswa',
-            'token' => Str::random(6),
-            'password' => Hash::make('1234'),
-        ]);
-       
+
+
 
         // for($i = 1; $i <= 15; $i++){
         //     User::create([
         //     'name' => $faker->name,
-        //     'nis' => $faker->unique()->numberBetween(20,1000),
+        //     'kelas' => $faker->unique()->numberBetween(20,1000),
         //     'token' => Str::random(6),
         //     'level' => 'siswa',
         //     'password' => Hash::make('1234'),

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\tokenuser;
+use App\Models\kelas;
 use Illuminate\Http\Request;
 use App\Exports\UsersExport;
 use Illuminate\Support\Str;
@@ -22,8 +24,8 @@ class userdatacontroller extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('admin.user.userindex',compact('users'));
+        $users = tokenuser::all();
+        return view('admin.user.userindex', compact('users'));
     }
 
     /**
@@ -33,7 +35,8 @@ class userdatacontroller extends Controller
      */
     public function create()
     {
-        return view('admin.user.usercreate');
+        $kelass = kelas::all();
+        return view('admin.user.usercreate', compact('kelass'));
     }
 
     /**
@@ -45,12 +48,11 @@ class userdatacontroller extends Controller
     public function store(Request $request)
     {
         $token = Str::random(6);
-        $user = User::create([
-            'name' => $request->name,
+        $user = tokenuser::create([
+            'nama' => $request->nama,
+            'kelas' => $request->kelas,
             'nis' => $request->nis,
-            'level' => $request->level,
             'token' => $token,
-            'password' => Hash::make($request->password),
         ]);
         return redirect()->route('User.index');
     }
@@ -74,9 +76,9 @@ class userdatacontroller extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-
-        return view('admin.user.useredit',compact('user'));
+        $kelas = tokenuser::findOrFail($id);
+        $kelass = kelas::all();
+        return view('admin.user.useredit', compact('kelas', 'kelass'));
     }
 
     /**
@@ -86,41 +88,42 @@ class userdatacontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $token_id)
     {
-        $user = User::findOrFail($id);
-    if ($request->hapustoken == !null) {
-        $user->update([
-            'name' => $request->name,
-            'nis' => $request->nis,
-            'level' => $request->level,
-            'token' => null,
-            'password' => Hash::make($request->password),
-        ]);
-               return redirect()->route('User.index');
-    }    
-       if($request->generatetoken == !null){
-        $token = Str::random(6);
-        $user->update([
-            'name' => $request->name,
-            'nis' => $request->nis,
-            'level' => $request->level,
-            'token' => $token,
-            'password' => Hash::make($request->password),
-        ]);
-        return redirect()->route('User.index');
-    }else{
-       $user->update([
-            'name' => $request->name,
-            'nis' => $request->nis,
-            'level' => $request->level,
-            'password' => Hash::make($request->password),
-        ]);
-               return redirect()->route('User.index');
-
-     }
-
-        
+        $user = tokenuser::findOrFail($token_id);
+        // dd($request->status);
+        if ($request->hapustoken == !null) {
+            $user->update([
+                'nama' => $request->nama,
+                'kelas' => $request->kelas,
+                'status' => 1,
+                'level' => $request->level,
+                'nis' => $request->nis,
+                'token' => null,
+            ]);
+            return redirect()->route('User.index');
+        }
+        if ($request->generatetoken == !null) {
+            $token = Str::random(6);
+            $user->update([
+                'nama' => $request->nama,
+                'nis' => $request->nis,
+                'status' => 0,
+                'kelas' => $request->kelas,
+                'level' => $request->level,
+                'token' => $token,
+            ]);
+            return redirect()->route('User.index');
+        } else {
+            $user->update([
+                'nama' => $request->nama,
+                'nis' => $request->nis,
+                'status' => $request->status,
+                'kelas' => $request->kelas,
+                'level' => $request->level,
+            ]);
+            return redirect()->route('User.index');
+        }
     }
 
     /**
@@ -131,45 +134,50 @@ class userdatacontroller extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
+        $user = tokenuser::findOrFail($id);
         $user->delete();
         return redirect()->route('User.index');
     }
-    public function export() 
-      {
-    return Excel::download(new UsersExport, 'users.xlsx');
-    return redirect()->route('User.index');
-      }
-      public function import(Request $request) 
+    public function export()
     {
-        Excel::import(new UsersImport, request()->file('excel'));
-        
+        return Excel::download(new UsersExport, 'users.xlsx');
         return redirect()->route('User.index');
     }
-    public function print($id)
+    public function import(Request $request)
     {
-        $check = DB::table('users')->where('id','=',$id)->where('token','=', null)->count();
-        // dd($check);
-        if($check == 0){
-         $user = User::findOrFail($id);
-        return view('admin.user.userprint',compact('user'));
-        }else{
-            alert()->error('Token','Token Kosong');
-            return redirect()->route('User.index');
-           }       
+        Excel::import(new UsersImport, request()->file('excel'));
 
+        return redirect()->route('User.index');
     }
-       public function printall()
+    public function print($token_id)
     {
-       $check = DB::table('users')->where('token','=', null)->whereNot(function ($query) {
-                    $query->where('name', 'admin');
-                })->count();
-           if($check == 0){
-             $users = DB::table('users')->where('level','=','siswa')->get();
-             return view('admin.user.printall',compact('users'));
-           }else{
-            alert()->error('Token','Ada Token Yang Kosong');
+        $check = DB::table('token_siswa')->where('token_id', '=', $token_id)->where('token', '=', null)->count();
+        // dd($check);
+        if ($check == 0) {
+            $user = tokenuser::findOrFail($token_id);
+            //   dd($user);
+            return view('admin.user.userprint', compact('user'));
+        } else {
+            alert()->error('Token', 'Token Kosong');
             return redirect()->route('User.index');
-           }
-       
-    }}
+        }
+    }
+    public function printall()
+    {
+        $check = DB::table('token_siswa')->where('token', '=', null)->count();
+        if ($check == 0) {
+            $users = DB::table('token_siswa')->get();
+            return view('admin.user.printall', compact('users'));
+        } else {
+            alert()->error('Token', 'Ada Token Yang Kosong');
+            return redirect()->route('User.index');
+        }
+    }
+     public function printlaporan()
+    {   
+            $users = DB::table('token_siswa')->where('status','=','0')->get();
+            // dd($users);
+            return view('admin.laporan.printdatagolput', compact('users'));
+    }
+
+}
